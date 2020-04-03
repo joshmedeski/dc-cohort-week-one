@@ -14,7 +14,7 @@ while is_running:
         new_task_priority = input("What is the priority (low, med, high)? ")
         data.tasks.append({
             "description": new_task_description,
-            "priority": new_task_priority
+            "priority": data.convert_wording_to_priority_int(new_task_priority)
         })
         print("Task was added successfully")
     elif user_input == '2':
@@ -22,14 +22,12 @@ while is_running:
         data.tasks.pop(index_of_task_to_delete)
         print('Task removed successfully')
     elif user_input == '3':
-        if data.tasks:
-            view.show_tasks()
-        else:
-            print('No tasks found')
+        view.show_tasks()
     elif user_input == '4':
         index_of_task_to_update_priority = view.select_task('update priority')
         new_priority = input("What is the new priority (low,med,high)? ")
-        data.tasks[index_of_task_to_update_priority]["priority"] = new_priority
+        data.tasks[index_of_task_to_update_priority][
+            "priority"] = data.convert_wording_to_priority_int(new_priority)
         print("The task's priority successfully")
     elif user_input == 'q':
         is_running = False

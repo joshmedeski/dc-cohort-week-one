@@ -3,6 +3,16 @@ import data
 def divider():
     print('- - - - - - - - - - - - - - - - - - - - - - - - -')
 
+def priority_with_wording(priority):
+    if priority == 1:
+        return "low"
+    elif priority == 2:
+        return "med"
+    elif priority == 3:
+        return "high"
+    else:
+        return "none"
+
 def show_menu():
     divider()
     print("Press '1' to add task")
@@ -12,9 +22,15 @@ def show_menu():
     print("Press 'q' to quit")
 
 def show_tasks():
-    print('All Tasks:')
-    for index, task in enumerate(data.tasks):
-        print(f'{index} - {task["description"]} - {task["priority"]}')
+    if data.tasks:
+        print('All Tasks:')
+        for index, task in enumerate(data.tasks):
+            print(
+                f'{index} - {task["description"]} - {priority_with_wording(task["priority"])}'
+            )
+    else:
+        print('No tasks found')
+
 
 def select_task(action):
     show_tasks()
