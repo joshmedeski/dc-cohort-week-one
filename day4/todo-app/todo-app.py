@@ -27,6 +27,9 @@ while is_running:
         else:
             print('No tasks found')
     elif user_input == '4':
-        print()
+        index_of_task_to_update_priority = view.select_task('update priority')
+        new_priority = input("What is the new priority (low,med,high)? ")
+        data.tasks[index_of_task_to_update_priority]["priority"] = new_priority
+        print("The task's priority successfully")
     elif user_input == 'q':
         is_running = False
